@@ -6,7 +6,7 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      keep('symbol', 'amount')
+      keep('name', 'currencies')
     ],
     update: [],
     patch: [],

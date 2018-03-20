@@ -10,19 +10,28 @@ describe('\'portfolios\' service', () => {
 
   it('creates a portfolio', async () => {
     const portfolio = await app.service('portfolios').create({
-      symbol: 'BTC',
-      amount: 0.5
+      name: 'Default',
+      currencies: [
+        { symbol: 'BTC', amount: 0.5 },
+        { symbol: 'LTC', amount: 0.75 }
+      ]
     })
 
     // Verify data has been set to what we'd expect
-    assert.equal(portfolio.symbol, 'BTC')
-    assert.equal(portfolio.amount, 0.5)
+    assert.equal(portfolio.name, 'Default')
+    assert.equal(portfolio.currencies.length, 2)
+    assert.equal(portfolio.currencies[0].symbol, 'BTC')
+    assert.equal(portfolio.currencies[0].amount, 0.5)
+    assert.equal(portfolio.currencies[1].symbol, 'LTC')
+    assert.equal(portfolio.currencies[1].amount, 0.75)
   })
 
   it('doesn\'t save extra data', async () => {
     const portfolio = await app.service('portfolios').create({
-      symbol: 'ETH',
-      amount: 1.25,
+      name: 'Main',
+      currencies: [
+        { symbol: 'BTC', amount: 0.5 }
+      ],
       foo: 'bar'
     })
 
