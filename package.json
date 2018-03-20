@@ -21,10 +21,12 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "test": "npm run lint && npm run mocha",
+    "test": "npm run lint && npm run coverage",
     "lint": "standard --fix",
     "start": "node src/",
-    "mocha": "mocha test/ --recursive"
+    "clean": "shx rm -rf test/data/",
+    "coverage": "npm run clean && nyc --reporter=text-summary mocha --timeout 999999 test/ --recursive --exit",
+    "mocha": "npm run clean && NODE_ENV=test mocha test/ --recursive --exit"
   },
   "standard": {
     "envs": [
@@ -32,17 +34,18 @@
     ]
   },
   "dependencies": {
+    "@feathersjs/configuration": "^1.0.2",
+    "@feathersjs/errors": "^3.3.0",
+    "@feathersjs/express": "^1.2.0",
+    "@feathersjs/feathers": "^3.1.3",
+    "@feathersjs/socketio": "^3.2.0",
     "body-parser": "^1.18.2",
     "compression": "^1.7.2",
     "cors": "^2.8.4",
-    "feathers": "^2.2.4",
-    "feathers-configuration": "^0.4.2",
-    "feathers-errors": "^2.9.2",
-    "feathers-hooks": "^2.1.2",
     "feathers-hooks-common": "^4.10.0",
-    "feathers-rest": "^1.8.1",
-    "feathers-socketio": "^2.0.1",
+    "feathers-nedb": "^2.7.0",
     "helmet": "^3.12.0",
+    "nedb": "^1.8.0",
     "serve-favicon": "^2.4.5",
     "winston": "^2.4.1"
   },
@@ -51,6 +54,7 @@
     "mocha": "^5.0.4",
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
+    "shx": "^0.2.2",
     "standard": "^11.0.1"
   }
 }
