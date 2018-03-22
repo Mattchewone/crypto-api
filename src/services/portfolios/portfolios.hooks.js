@@ -1,13 +1,9 @@
-const { keep } = require('feathers-hooks-common')
-
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [
-      keep('name', 'currencies')
-    ],
+    create: [],
     update: [],
     patch: [],
     remove: []

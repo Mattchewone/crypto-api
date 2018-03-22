@@ -2,6 +2,10 @@ const assert = require('assert')
 const app = require('../../src/app')
 
 describe('\'portfolios\' service', () => {
+  before(function () {
+    return app.service('portfolios').remove(null, {})
+  })
+
   it('registered the service', () => {
     const service = app.service('portfolios')
 

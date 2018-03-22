@@ -24,9 +24,8 @@
     "test": "npm run lint && npm run coverage",
     "lint": "standard --fix",
     "start": "node src/",
-    "clean": "shx rm -rf test/data/",
-    "coverage": "npm run clean && nyc mocha --timeout 999999 test/ --recursive --exit",
-    "mocha": "npm run clean && NODE_ENV=test mocha test/ --recursive --exit"
+    "coverage": "nyc mocha --timeout 999999 test/ --recursive --exit",
+    "mocha": "NODE_ENV=test mocha test/ --recursive --exit"
   },
   "standard": {
     "envs": [
@@ -43,9 +42,10 @@
     "compression": "^1.7.2",
     "cors": "^2.8.4",
     "feathers-hooks-common": "^4.10.0",
+    "feathers-mongoose": "^6.1.0",
     "feathers-nedb": "^2.7.0",
     "helmet": "^3.12.0",
-    "nedb": "^1.8.0",
+    "mongoose": "^5.0.10",
     "serve-favicon": "^2.4.5",
     "winston": "^2.4.1"
   },
@@ -55,7 +55,6 @@
     "nyc": "^11.6.0",
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
-    "shx": "^0.2.2",
     "standard": "^11.0.1"
   }
 }

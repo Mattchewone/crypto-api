@@ -1,12 +1,18 @@
-const NeDB = require('nedb')
-const path = require('path')
-
+// portfolios-model.js - A mongoose model
+// See http://mongoosejs.com/docs/models.html
+// for more of what you can do here.
 module.exports = function (app) {
-  const dbPath = app.get('nedb')
-  const Model = new NeDB({
-    filename: path.join(dbPath, 'portfolios.db'),
-    autoload: true
+  const mongooseClient = app.get('mongooseClient')
+  const { Schema } = mongooseClient
+  const portfolios = new Schema({
+    name: { type: String, required: true },
+    currencies: [{
+      symbol: { type: String },
+      amount: { type: Number }
+    }]
+  }, {
+    timestamps: true
   })
 
-  return Model
+  return mongooseClient.model('portfolios', portfolios)
 }
