@@ -24,8 +24,15 @@
     "test": "npm run lint && npm run coverage",
     "lint": "standard --fix",
     "start": "node src/",
-    "coverage": "nyc mocha --timeout 999999 test/ --recursive --exit",
+    "coverage": "NODE_ENV=test nyc mocha --timeout 999999 test/ --recursive --exit",
     "mocha": "NODE_ENV=test mocha test/ --recursive --exit"
+  },
+  "now": {
+    "alias":"crypto-dashboard-api",
+    "name": "crypto-dashboard-api",
+    "env": {
+      "PORT": 8000
+    }
   },
   "standard": {
     "envs": [
