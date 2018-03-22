@@ -8,7 +8,8 @@ module.exports = function (app) {
     name: { type: String, required: true },
     currencies: [{
       symbol: { type: String },
-      amount: { type: Number }
+      amount: { type: Number },
+      purchasePrice: { type: Number }
     }]
   }, {
     timestamps: true

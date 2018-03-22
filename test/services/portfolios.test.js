@@ -16,8 +16,8 @@ describe('\'portfolios\' service', () => {
     const portfolio = await app.service('portfolios').create({
       name: 'Default',
       currencies: [
-        { symbol: 'BTC', amount: 0.5 },
-        { symbol: 'LTC', amount: 0.75 }
+        { symbol: 'BTC', amount: 0.5, purchasePrice: 800.2 },
+        { symbol: 'ETH', amount: 0.75 }
       ]
     })
 
@@ -26,7 +26,8 @@ describe('\'portfolios\' service', () => {
     assert.equal(portfolio.currencies.length, 2)
     assert.equal(portfolio.currencies[0].symbol, 'BTC')
     assert.equal(portfolio.currencies[0].amount, 0.5)
-    assert.equal(portfolio.currencies[1].symbol, 'LTC')
+    assert.equal(portfolio.currencies[0].purchasePrice, 800.2)
+    assert.equal(portfolio.currencies[1].symbol, 'ETH')
     assert.equal(portfolio.currencies[1].amount, 0.75)
   })
 
